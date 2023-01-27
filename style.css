@@ -3,3 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    min-height:100vh;
+    background: url('./img/background-app.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Major Mono Display', monospace;
+    font-weight: bolder;
+    color: white;
+}
