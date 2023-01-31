@@ -5,19 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rubrica</title>
+    <title>Address Book</title>
     <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap" rel="stylesheet">
     <!-- >FontAwesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap Css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <!-- Css Custom -->
     <link rel="stylesheet" href="./style.css">
     <!-- Js Custom -->
@@ -25,12 +22,77 @@
 </head>
 
 <body>
-    <section class="container my-5">
-        <div class="row text-center">
-            <div class="col-12 col-md-6 border border-1">1</div>
-            <div class="col-12 col-md-6 border border-1">2</div>
-        </div>
-    </section>
+
+    <div id="app">
+
+        <section class="container my-5">
+
+            <div class="row">
+
+                <div class="col-12 col-md-8 my-5">
+
+                    <h1 class="display-4">Digital Address Book</h1>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- INPUT -->
+
+        <section class="container">
+
+            <div class="row text-center">
+
+                <div class="col-12 col-md-6 col-lg-5 ms-auto">
+
+                    <div class="row d-flex align-items-center">
+
+                        <div class="col-12 col-md-8 border-2 ps-0">
+                            <input id="nameInput" type="text" class="form-control mb-2" placeholder="Name contact..."
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                            <input id="numberInput" type="text" class="form-control" placeholder="Number..."
+                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                        </div>
+
+                        <div
+                            class="col-12 col-md-4 d-flex flex-md-column justify-content-around justify-content-md-between align-items-md-end p-0">
+                            <button class="btn btn-outline-secondary my-4 my-md-2" type="button"
+                                id="addContactBtn">Add</button>
+                            <button class="btn btn-outline-secondary my-4 my-md-2" type="button"
+                                id="removeContactBtn">Remove</button>
+                            <button class="btn btn-outline-secondary my-4 my-md-2 w-md-50" type="button"
+                                id="button-addon2">Search</button>
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 mx-3 mx-md-0">
+                        <button class="btn btn-outline-secondary" type="button" id="showContactsBtn">View
+                            Contacts</button>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CARDS CONTACTS -->
+
+        <section class="container">
+
+            <div class="row text-center container-cards mt-5">
+
+            </div>
+
+        </section>
+
+
+
+    </div>
 
 
     <!-- Bootstrap js -->

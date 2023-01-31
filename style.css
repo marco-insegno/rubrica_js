@@ -4,13 +4,78 @@
     box-sizing: border-box;
 }
 
-body{
-    min-height:100vh;
+:root {
+    --color-yellow: #ffee00;
+    --color-white: #fff;
+}
+
+body {
+    min-height: 100vh;
     background: url('./img/background-app.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Major Mono Display', monospace;
     font-weight: bolder;
-    color: white;
+    color: var(--color-white);
+}
+
+/* INPUT */
+input{
+    background-color: transparent !important;
+    padding: 15px !important;
+    border-radius: 0 !important;
+}
+
+input::placeholder{
+    color: var(--color-yellow) !important;
+}
+
+.form-control{
+    color: var(--color-yellow) !important;
+}
+
+.form-control:focus{
+    border-color: var(--color-yellow) !important;
+    box-shadow:0 0 0 .25rem #ffee006f !important ;
+    color: var(--color-white) !important;
+}
+
+button{
+    width: 120px;
+    background: rgb(25, 25, 25) !important;
+    margin: 5px 0;
+    color: var(--color-white) !important;
+    border-radius: 2px !important;
+    transition: 0.3s !important;
+}
+
+button:hover{
+    color: var(--color-yellow) !important;
+    transform: scale(1.1);
+
+}
+
+
+/* CARD CONTACT */
+.card {
+    background: transparent;
+    border: 1px solid var(--color-white);
+    border-radius: 0px;
+    color: var(--color-white);
+}
+
+.card h6 {
+    cursor: pointer;
+    color: var(--color-yellow);
+}
+
+.card a {
+    text-decoration: none;
+}
+
+i.fa-ban{
+    font-size: 12px;
+    color: var(--color-yellow);
+    cursor: pointer;
 }
