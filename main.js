@@ -8,6 +8,8 @@ window.addEventListener('load', (event) => {
 
     let btnRemoveContact = document.querySelector('#removeContactBtn');
 
+    let btnSearchContact = document.querySelector('#searchContactBtn');
+
     let nameInput = document.querySelector('#nameInput');
 
     let numberInput = document.querySelector('#numberInput');
@@ -18,14 +20,14 @@ window.addEventListener('load', (event) => {
 
 
     // FETCH 
-    fetch('generated.json').then((response) => response.json()).then((contacts) => {
+    fetch('./friends.json').then((response) => response.json()).then((contacts) => {
 
         // FUNCTION SHOW
-        function showContacts() {
+        function showContacts(array) {
 
             containerCards.innerHTML = ``;
 
-            contacts.forEach((contact) => {
+            array.forEach((contact) => {
 
                 let card = document.createElement('div');
 
@@ -33,10 +35,10 @@ window.addEventListener('load', (event) => {
 
                 card.innerHTML = `
                                         <div class="card">
-    
-                                            <div class="card-body text-start">
+
+                                            <div class="card-body text-start d-flex flex-column justify-content-between">
                                                 <h5 class="card-title">${contact.name}</h5>
-                                                
+
                                                 <div class="card-footer-custom d-flex justify-content-between align-items-center">
                                                     <a href="tel:+39${contact.phone}" title="Call ${contact.name}"><h6 class="card-text fw-bolder">+39 ${contact.phone}</h6></a>
                                                     <span>
@@ -44,9 +46,9 @@ window.addEventListener('load', (event) => {
                                                     </span>
                                                 </div>
                                             </div>
-    
+
                                         </div>
-    
+
                                     `;
 
                 containerCards.appendChild(card);
@@ -61,7 +63,7 @@ window.addEventListener('load', (event) => {
 
 
 
-                    let name = contacts[index].name;
+                    let name = array[index].name;
 
                     removeContact(name);
 
@@ -86,7 +88,7 @@ window.addEventListener('load', (event) => {
 
                 contacts.push({ name: newName, phone: newNumber });
 
-                showContacts();
+                showContacts(contacts);
 
                 nameInput.value = ``;
 
@@ -113,7 +115,7 @@ window.addEventListener('load', (event) => {
 
                 contacts.splice(index, 1);
 
-                showContacts();
+                showContacts(contacts);
 
             } else {
 
@@ -123,6 +125,31 @@ window.addEventListener('load', (event) => {
 
         }
 
+        // FUNCTION SEARCH CONTACT
+
+        function searchContact(searchedName) {
+
+            
+            let filtered = contacts.filter((contact) => searchedName.toLowerCase() == contact.name.toLowerCase());
+
+            if (filtered.length > 0){
+
+                showContacts(filtered);
+
+            } else {
+
+                btnShowContacts.innerHTML = `View Contacts 👀`;
+
+                alert('Contact not present in the address book! 🤪');
+
+            }
+
+        };
+
+
+
+
+
         // Btn SHOW CARS
         btnShowContacts.addEventListener('click', () => {
 
@@ -130,7 +157,7 @@ window.addEventListener('load', (event) => {
 
                 confirm = true;
 
-                showContacts();
+                showContacts(contacts);
 
                 btnShowContacts.innerHTML = `Hide Contacts`;
 
@@ -176,12 +203,19 @@ window.addEventListener('load', (event) => {
 
         });
 
+        // Btn SEARCH CONTACT
+
+        btnSearchContact.addEventListener('click', () => {
+
+            confirm = true;
+
+            searchContact(nameInput.value);
+
+            nameInput.value = '';
+
+        })
+
     });
-
-
-
-
-
 
 
 
@@ -229,11 +263,11 @@ window.addEventListener('load', (event) => {
 
     //     ],
 
-    //     showContacts: function () {
+    //     showContacts: function (array) {
 
     //         containerCards.innerHTML = ``;
 
-    //         this.contacts.forEach((contact) => {
+    //         array.forEach((contact) => {
 
     //             let card = document.createElement('div');
 
@@ -243,7 +277,7 @@ window.addEventListener('load', (event) => {
 
     //                                     <div class="card">
 
-    //                                         <div class="card-body text-start">
+    //                                         <div class="card-body text-start d-flex flex-column justify-content-between">
     //                                             <h5 class="card-title">${contact.name}</h5>
 
     //                                             <div class="card-footer-custom d-flex justify-content-between align-items-center">
@@ -269,13 +303,13 @@ window.addEventListener('load', (event) => {
 
     //             icon.addEventListener('click', () => {
 
-    //                 let name = this.contacts[index].name;
+    //                 let name = array[index].name;
 
     //                 this.removeContact(name);
 
     //                 if (addressBook.contacts.length == 0) {
 
-    //                     btnShowContacts.innerHTML = `NO Contacts`;
+    //                     btnShowContacts.innerHTML = `NO Contacts 📵`;
 
     //                 }
 
@@ -293,17 +327,18 @@ window.addEventListener('load', (event) => {
 
     //             this.contacts.push({ name: newName, number: newNumber });
 
-    //             this.showContacts();
+    //             this.showContacts(this.contacts);
 
     //             nameInput.value = ``;
 
     //             numberInput.value = ``;
 
-    //             btnShowContacts.innerHTML = `Hide Contacts`;
+    //             btnShowContacts.innerHTML = `Hide Contacts 🙈`;
 
     //         } else {
 
-    //             alert('Please enter a VALID number');
+    //             alert('Please enter a VALID number! 🤨');
+                
 
     //         }
 
@@ -319,11 +354,33 @@ window.addEventListener('load', (event) => {
 
     //             this.contacts.splice(index, 1);
 
-    //             this.showContacts();
+    //             this.showContacts(this.contacts);
 
     //         } else {
 
-    //             alert('Contact not present!');
+    //             alert('Contact not present! 🤪');
+
+    //         }
+
+    //     },
+
+    //     searchContact: function (searchedName) {
+
+            
+
+    //         let filtered = this.contacts.filter((contact) => searchedName.toLowerCase() == contact.name.toLowerCase());
+
+    //         if (filtered.length > 0) {
+
+    //             this.showContacts(filtered);
+
+    //             btnShowContacts.innerHTML = `Hide Contacts 🙈`;
+
+    //         } else {
+
+    //             btnShowContacts.innerHTML = `View Contacts 👀`;
+
+    //             alert('Contact not present in the address book! 🤪');
 
     //         }
 
@@ -338,9 +395,9 @@ window.addEventListener('load', (event) => {
 
     //         confirm = true;
 
-    //         addressBook.showContacts();
+    //         addressBook.showContacts(addressBook.contacts);
 
-    //         btnShowContacts.innerHTML = `Hide Contacts`;
+    //         btnShowContacts.innerHTML = `Hide Contacts 🙈`;
 
     //     } else {
 
@@ -348,7 +405,7 @@ window.addEventListener('load', (event) => {
 
     //         containerCards.innerHTML = ``;
 
-    //         btnShowContacts.innerHTML = `View Contacts`;
+    //         btnShowContacts.innerHTML = `View Contacts 👀`;
 
     //     }
 
@@ -365,7 +422,7 @@ window.addEventListener('load', (event) => {
 
     //     } else {
 
-    //         alert('Y must enter name and number!');
+    //         alert('Y must enter name and number! 😬');
 
     //     }
 
@@ -374,21 +431,45 @@ window.addEventListener('load', (event) => {
     // });
 
     // // Btn REMOVE CONTACT
-
     // btnRemoveContact.addEventListener('click', () => {
 
     //     confirm = true;
 
     //     addressBook.removeContact(nameInput.value);
 
-    //     btnShowContacts.innerHTML = `Hide Contacts`;
+    //     btnShowContacts.innerHTML = `Hide Contacts 🙈`;
 
     //     nameInput.value = '';
+
+    //     btnShowContacts.innerHTML = `View Contacts 👀`;
+
+    // });
+
+    // // Btn SEARCH CONTACT
+    // btnSearchContact.addEventListener('click', () => {
+
+    //         confirm = true;
+    
+    //         addressBook.searchContact(nameInput.value);
+    
+    //         nameInput.value = '';
 
     // });
 
 
 
+
+
+
+
+    // // BACKGROUND EFFECT
+    // Particles.init({
+    //     selector: '.background',
+    //     maxParticles: 1000,
+    //     sizeVariations: 10,
+    //     speed: 3.8,
+    //     color: '#fff'
+    //   }); 
 
 
 
