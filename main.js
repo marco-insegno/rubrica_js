@@ -27,6 +27,8 @@ window.addEventListener('load', (event) => {
 
             containerCards.innerHTML = ``;
 
+            containerCards.classList.add('bg-container-cards');
+
             array.forEach((contact) => {
 
                 let card = document.createElement('div');
@@ -69,7 +71,7 @@ window.addEventListener('load', (event) => {
 
                     if (contacts.length == 0) {
 
-                        btnShowContacts.innerHTML = `No Contacts`;
+                        btnShowContacts.innerHTML = `Address Book Empty 📵`;
 
                     }
 
@@ -94,7 +96,7 @@ window.addEventListener('load', (event) => {
 
                 numberInput.value = ``;
 
-                btnShowContacts.innerHTML = `Hide Contacts`;
+                btnShowContacts.innerHTML = `Hide Contacts 🙈`;
 
             } else {
 
@@ -117,9 +119,13 @@ window.addEventListener('load', (event) => {
 
                 showContacts(contacts);
 
+                btnShowContacts.innerHTML = `Hide Contacts 🙈`;
+
             } else {
 
-                alert('Contact not present!');
+                alert('Contact not present in the address book! 🤪');
+
+                btnShowContacts.innerHTML = `View Contacts 👀`;
 
             }
 
@@ -129,16 +135,14 @@ window.addEventListener('load', (event) => {
 
         function searchContact(searchedName) {
 
-            
+
             let filtered = contacts.filter((contact) => searchedName.toLowerCase() == contact.name.toLowerCase());
 
-            if (filtered.length > 0){
+            if (filtered.length > 0) {
 
                 showContacts(filtered);
 
             } else {
-
-                btnShowContacts.innerHTML = `View Contacts 👀`;
 
                 alert('Contact not present in the address book! 🤪');
 
@@ -159,7 +163,7 @@ window.addEventListener('load', (event) => {
 
                 showContacts(contacts);
 
-                btnShowContacts.innerHTML = `Hide Contacts`;
+                btnShowContacts.innerHTML = `Hide Contacts 🙈`;
 
             } else {
 
@@ -167,7 +171,9 @@ window.addEventListener('load', (event) => {
 
                 containerCards.innerHTML = ``;
 
-                btnShowContacts.innerHTML = `View Contacts`;
+                btnShowContacts.innerHTML = `View Contacts 👀`;
+
+                containerCards.classList.remove('bg-container-cards');
 
             }
 
@@ -197,8 +203,6 @@ window.addEventListener('load', (event) => {
 
             removeContact(nameInput.value);
 
-            btnShowContacts.innerHTML = `Hide Contacts`;
-
             nameInput.value = '';
 
         });
@@ -218,37 +222,16 @@ window.addEventListener('load', (event) => {
     });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // BACKGROUND PARTICLES EFFECT
+    Particles.init({
+        selector: '.background',
+        maxParticles: 25,
+        sizeVariations: 20,
+        speed: 1.8,
+        color: '#ffee00',
+        minDistance: 350,
+        connectParticles: true
+    });
 
     // const addressBook = {
 
@@ -338,7 +321,7 @@ window.addEventListener('load', (event) => {
     //         } else {
 
     //             alert('Please enter a VALID number! 🤨');
-                
+
 
     //         }
 
@@ -366,7 +349,7 @@ window.addEventListener('load', (event) => {
 
     //     searchContact: function (searchedName) {
 
-            
+
 
     //         let filtered = this.contacts.filter((contact) => searchedName.toLowerCase() == contact.name.toLowerCase());
 
@@ -449,29 +432,11 @@ window.addEventListener('load', (event) => {
     // btnSearchContact.addEventListener('click', () => {
 
     //         confirm = true;
-    
+
     //         addressBook.searchContact(nameInput.value);
-    
+
     //         nameInput.value = '';
 
     // });
-
-
-
-
-
-
-
-    // // BACKGROUND EFFECT
-    // Particles.init({
-    //     selector: '.background',
-    //     maxParticles: 1000,
-    //     sizeVariations: 10,
-    //     speed: 3.8,
-    //     color: '#fff'
-    //   }); 
-
-
-
 
 });
